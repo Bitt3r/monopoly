@@ -3,6 +3,9 @@ Monopoly is a multiplayer economics-themed board game. <br />
 In the game, players roll two dice to move around the game board, <br />
 buying and trading properties and developing them with houses and hotels. <br />
 Players collect rent from their opponents, aiming to drive them into bankruptcy.
+
+***You can pull docker image from ```docker pull bitt3r/monopoly```***
+
 ### Commands
 #### When app is started you will be prompted to enter info, and you will get 2 choices
 
