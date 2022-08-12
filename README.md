@@ -38,12 +38,10 @@ Once the game start and it is first player turn you have the following commands:
 There is one extra command that will not show, cheat command that will give you 1000$ <br />
 Command is playerName cheat
 
-````
-TODO:
-Add more options when starting app
-Optimize code
-Refactor some classes
-Create and flat project hieararchy
-Add docker
-Add tests
-````
+TODO: 
+- [ ] Add more options when starting app
+- [ ] Optimize code
+- [ ] Refactor some classes
+- [ ] Create and flat project hieararchy
+- [ ] Add docker
+- [ ] Add tests
