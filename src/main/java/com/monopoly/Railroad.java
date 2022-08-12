@@ -1,3 +1,5 @@
+package com.monopoly;
+
 import java.util.List;
 
 class Railroad extends Property {

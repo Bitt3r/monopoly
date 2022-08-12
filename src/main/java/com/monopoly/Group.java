@@ -1,3 +1,5 @@
+package com.monopoly;
+
 public enum Group {
 
     PURPLE(2, 50),

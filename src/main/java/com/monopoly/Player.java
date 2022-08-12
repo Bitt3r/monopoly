@@ -1,3 +1,5 @@
+package com.monopoly;
+
 import java.util.*;
 import java.util.function.BiConsumer;
 

@@ -1,3 +1,5 @@
+package com.monopoly;
+
 public enum CardType {
 
     CHANCE,

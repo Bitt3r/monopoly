@@ -1,3 +1,5 @@
+package com.monopoly;
+
 import java.util.List;
 
 abstract class Property extends BoardSpace {

@@ -1,3 +1,5 @@
+package com.monopoly;
+
 class Bidder {
     private final Player player;
     private int bid;

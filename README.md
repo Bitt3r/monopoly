@@ -39,9 +39,10 @@ There is one extra command that will not show, cheat command that will give you 
 Command is playerName cheat
 
 TODO: 
+- [x] Add maven
 - [ ] Add more options when starting app
 - [ ] Optimize code
 - [ ] Refactor some classes
-- [ ] Create and flat project hieararchy
+- [ ] Create and flat project hierarchy
 - [ ] Add docker
 - [ ] Add tests

@@ -1,3 +1,5 @@
+package com.monopoly;
+
 class CardSpace extends BoardSpace {
 
     private final CardType type;
