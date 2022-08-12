@@ -44,5 +44,5 @@ TODO:
 - [ ] Optimize code
 - [ ] Refactor some classes
 - [ ] Create and flat project hierarchy
-- [ ] Add docker
+- [x] Add docker
 - [ ] Add tests
