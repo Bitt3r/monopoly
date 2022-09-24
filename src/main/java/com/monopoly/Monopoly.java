@@ -5,7 +5,7 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
-class Monopoly {
+public class Monopoly {
 
     private final List<BoardSpace> boardSpaces;
     private final List<Player> players;
@@ -19,7 +19,7 @@ class Monopoly {
     private int houses, hotels;
     private boolean playing;
 
-    Monopoly() {
+    public Monopoly() {
         boardSpaces = BoardSpace.importBoardSpaces();
         players = makePlayers();
         commands = makeCommands();
