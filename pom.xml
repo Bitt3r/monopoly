@@ -4,7 +4,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-
     <groupId>com.monopoly</groupId>
     <artifactId>Monopoly</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -12,17 +11,15 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>RELEASE</version>
+            <version>5.8.0</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
-
 
     <properties>
         <maven.compiler.source>14</maven.compiler.source>
         <maven.compiler.target>14</maven.compiler.target>
     </properties>
-
 
     <build>
         <plugins>
@@ -54,10 +51,18 @@
                             junit.jupiter.execution.parallel.mode.classes.default=concurrent
                         </configurationParameters>
                     </properties>
+                    <encoding>UTF-8</encoding>
+                    <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
+                    <forkCount>1</forkCount>
+                    <parallel>classes</parallel>
+                    <threadCount>1</threadCount>
+                    <threadCountClasses>1</threadCountClasses>
+                    <threadCountMethods>1</threadCountMethods>
+                    <threadCountSuites>1</threadCountSuites>
+                    <testFailureIgnore>true</testFailureIgnore>
+                    <useFile>true</useFile>
                 </configuration>
             </plugin>
-
-            <!-- Failsafe Report Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
@@ -71,9 +76,10 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
             </plugin>
         </plugins>
     </build>
-
-
 </project>
