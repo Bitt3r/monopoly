@@ -2,8 +2,9 @@ name: Test, Build and Publish Docker Image
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
 
 jobs:
   test:
