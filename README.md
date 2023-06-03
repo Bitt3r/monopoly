@@ -44,9 +44,9 @@ Command is playerName cheat
 TODO: 
 - [x] Add maven
 - [x] Add Junit
-- [ ] Add more options when starting app
-- [ ] Optimize code
-- [ ] Refactor some classes
-- [ ] Create and flat project hierarchy
+- [x] Optimize code
+- [x] Refactor some classes
 - [x] Add docker
-- [ ] Add tests
+- [x] Add tests
+- [ ] Move to Spring
+- [ ] Add MySQL
