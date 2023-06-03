@@ -14,10 +14,10 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up JDK 14
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v2
         with:
-          java-version: '17'
-          distribution: 'temurin'
+          java-version: '14'
+          distribution: 'adopt'
           cache: maven
 
       - name: Test
@@ -30,16 +30,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+      - name: Set up JDK 14
+        uses: actions/setup-java@v2
+        with:
+          java-version: '14'
+          distribution: 'adopt'
 
       - name: Build Docker image for Windows
-        run: docker build -t bitt3r/monopoly:windows-latest .
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        # - name: Login to Docker
-        #   run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+        run: |
+          docker build --build-arg JAR_FILE=target/monopoly.jar -t bitt3r/monopoly:windows-latest .
 
   build-ubuntu:
     needs: test
@@ -48,43 +47,40 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+      - name: Set up JDK 14
+        uses: actions/setup-java@v2
+        with:
+          java-version: '14'
+          distribution: 'adopt'
 
       - name: Build Docker image for Ubuntu
-        run: docker build -t bitt3r/monopoly:ubuntu-latest .
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        # - name: Login to Docker
-        #   run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+        run: |
+          docker build --build-arg JAR_FILE=target/monopoly.jar -t bitt3r/monopoly:ubuntu-latest .
 
   push-windows:
     needs: build-windows
     runs-on: windows-latest
     steps:
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-
       - name: Push Docker image for Windows
-        run: docker push bitt3r/monopoly:windows-latest
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: bitt3r/monopoly:windows-latest
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        # - name: Login to Docker
-        #   run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
 
   push-ubuntu:
     needs: build-ubuntu
     runs-on: ubuntu-latest
     steps:
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-
       - name: Push Docker image for Ubuntu
-        run: docker push bitt3r/monopoly:ubuntu-latest
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: bitt3r/monopoly:ubuntu-latest
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        # - name: Login to Docker
-        #   run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
