@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-class BoardSpace {
+public class BoardSpace {
 
     private final String name;
 
@@ -58,7 +58,7 @@ class BoardSpace {
         }
     }
 
-    String getName() {
+    public String getName() {
         return name;
     }
 

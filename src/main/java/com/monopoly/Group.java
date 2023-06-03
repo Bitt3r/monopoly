@@ -19,15 +19,15 @@ public enum Group {
         this.housePrice = housePrice;
     }
 
-    int getBuildPrice() {
+    public int getBuildPrice() {
         return housePrice;
     }
 
-    int getUnbuildPrice() {
+    public int getUnbuildPrice() {
         return housePrice / 2;
     }
 
-    int getNumberOfProperties() {
+    public int getNumberOfProperties() {
         return numberOfProperties;
     }
 

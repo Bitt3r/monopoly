@@ -3,14 +3,14 @@ package com.monopoly;
 import java.util.*;
 import java.util.function.BiConsumer;
 
-class Player {
+public class Player {
 
     private final String name;
     private final Map<String, BiConsumer<Monopoly, String>> commands;
     private int pos, money, turnInJail, jailCards, doublesCount;
     private boolean turn, mustRoll, mustAddressProperty, mustPay;
 
-    Player(String name) {
+    public Player(String name) {
         this.name = name;
         pos = 0;
         money = 1500;
@@ -26,7 +26,7 @@ class Player {
         mustAddressProperty = true;
     }
 
-    boolean isTurn() {
+    public boolean isTurn() {
         return turn;
     }
 
@@ -49,7 +49,7 @@ class Player {
         turn = false;
     }
 
-    boolean isInJail() {
+    public boolean isInJail() {
         return turnInJail > -1;
     }
 
@@ -63,7 +63,7 @@ class Player {
         turnInJail = 0;
     }
 
-    int getPos() {
+    public int getPos() {
         return pos;
     }
 
@@ -81,15 +81,15 @@ class Player {
         System.out.printf("You landed on %s.%n", sp.getFormattedName());
     }
 
-    int getMoney() {
+    public int getMoney() {
         return money;
     }
 
-    void gainMoney(int n) {
+    public void gainMoney(int n) {
         money += n;
     }
 
-    void loseMoney(int n) {
+    public void loseMoney(int n) {
         money -= n;
     }
 
@@ -98,7 +98,7 @@ class Player {
         p.gainMoney(n);
     }
 
-    void gainJailCard() {
+    public void gainJailCard() {
         jailCards++;
     }
 
@@ -123,7 +123,7 @@ class Player {
         return new ArrayList<>(Arrays.asList(p));
     }
 
-    int totalAssets(List<BoardSpace> boardSpaces) {
+    public int totalAssets(List<BoardSpace> boardSpaces) {
         int ret = getMoney();
 
         //Check if they own each property, and if they have any houses/hotel on them.

@@ -47,7 +47,7 @@ public class Monopoly {
         }
     }
 
-    List<BoardSpace> getBoardSpaces() {
+    public List<BoardSpace> getBoardSpaces() {
         return boardSpaces;
     }
 
@@ -64,15 +64,15 @@ public class Monopoly {
         return null;
     }
 
-    List<Player> getPlayers() {
+    public List<Player> getPlayers() {
         return players;
     }
 
-    Deck getChance() {
+    public Deck getChance() {
         return chance;
     }
 
-    Deck getCommunityChest() {
+    public Deck getCommunityChest() {
         return communityChest;
     }
 

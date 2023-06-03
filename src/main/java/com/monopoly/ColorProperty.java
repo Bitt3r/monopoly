@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-class ColorProperty extends Property {
+public class ColorProperty extends Property {
 
     private static final Map<Group, String> COLORS = new HashMap<Group, String>() {{
         put(Group.PURPLE, "\u001B[38;5;57m");
@@ -21,7 +21,7 @@ class ColorProperty extends Property {
     private final int[] rents;
     private int houses;
 
-    ColorProperty(String n, Group g, int p, int[] r) {
+    public ColorProperty(String n, Group g, int p, int[] r) {
         super(n, p);
         group = g;
         rents = r;
@@ -121,7 +121,7 @@ class ColorProperty extends Property {
     }
 
     @Override
-    int rent(List<BoardSpace> allProperties, int roll) {
+    public int rent(List<BoardSpace> allProperties, int roll) {
         //If there are houses/hotels on the property, get rent from the rents array.
         if (houses > 0) {
             return rents[houses];

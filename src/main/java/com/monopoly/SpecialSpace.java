@@ -4,18 +4,18 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
 
-class SpecialSpace extends BoardSpace {
+public class SpecialSpace extends BoardSpace {
 
     private final SpecialType type;
     private final Consumer<Monopoly> func;
 
-    SpecialSpace(String n, SpecialType t) {
+    public SpecialSpace(String n, SpecialType t) {
         super(n);
         type = t;
         func = functions.get(type);
     }
 
-    void doFunc(Monopoly m) {
+    public void doFunc(Monopoly m) {
         func.accept(m);
     }
 

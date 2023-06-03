@@ -2,20 +2,20 @@ package com.monopoly;
 
 import java.util.List;
 
-abstract class Property extends BoardSpace {
+public abstract class Property extends BoardSpace {
 
     private final int price;
     private Player owner;
     private boolean mortgaged;
 
-    Property(String n, int p) {
+    public Property(String n, int p) {
         super(n);
         price = p;
         owner = null;
         mortgaged = false;
     }
 
-    int getPrice() {
+    public int getPrice() {
         return price;
     }
 
@@ -23,15 +23,15 @@ abstract class Property extends BoardSpace {
         return owner != null;
     }
 
-    Player getOwner() {
+    public Player getOwner() {
         return owner;
     }
 
-    void setOwner(Player p) {
+    public void setOwner(Player p) {
         owner = p;
     }
 
-    boolean isMortgaged() {
+    public boolean isMortgaged() {
         return mortgaged;
     }
 
@@ -39,7 +39,7 @@ abstract class Property extends BoardSpace {
         return price / 2;
     }
 
-    void mortgage(List<BoardSpace> boardSpaces) {
+    public void mortgage(List<BoardSpace> boardSpaces) {
 
         //Cannot mortgage a mortgaged property.
         if (isMortgaged()) {
@@ -64,7 +64,7 @@ abstract class Property extends BoardSpace {
                 mortgagePrice(), getFormattedName());
     }
 
-    void unmortgage() {
+    public void unmortgage() {
 
         //Check if already unmortgaged, or not enough money
         if (!isMortgaged()) {
@@ -80,5 +80,5 @@ abstract class Property extends BoardSpace {
         }
     }
 
-    abstract int rent(List<BoardSpace> allProperties, int roll);
+    public abstract int rent(List<BoardSpace> allProperties, int roll);
 }

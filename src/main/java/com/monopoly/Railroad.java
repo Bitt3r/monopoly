@@ -2,14 +2,14 @@ package com.monopoly;
 
 import java.util.List;
 
-class Railroad extends Property {
+public class Railroad extends Property {
 
-    Railroad(String n) {
+    public Railroad(String n) {
         super(n, 200);
     }
 
     @Override
-    int rent(List<BoardSpace> allProperties, int roll) {
+    public int rent(List<BoardSpace> allProperties, int roll) {
         int count = (int) allProperties
                 .stream()
                 .filter(p -> p instanceof Railroad)

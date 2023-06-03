@@ -3,12 +3,12 @@ package com.monopoly;
 import java.util.Random;
 
 
-class Dice {
+public class Dice {
 
     private final Random r = new Random();
     private final int[] current = new int[2];
 
-    int[] getCurrent() {
+    public int[] getCurrent() {
         return current;
     }
 
@@ -17,7 +17,7 @@ class Dice {
         current[1] = y;
     }
 
-    void roll() {
+    public void roll() {
         //Roll each dice in the set.
         for (int i = 0; i < current.length; i++)
             current[i] = r.nextInt(6) + 1;
