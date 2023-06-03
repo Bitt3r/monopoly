@@ -55,6 +55,9 @@ jobs:
           echo "JAVA_HOME=/usr/lib/jvm/java-17-openjdk-arm64" >> $GITHUB_ENV
           echo "PATH=\${JAVA_HOME}/bin:\${PATH}" >> $GITHUB_ENV
 
+      - name: Install Maven
+        run: sudo apt-get install -y maven
+
       - name: Run tests with Maven
         run: mvn -B test --file pom.xml
 
