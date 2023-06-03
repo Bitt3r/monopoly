@@ -1,52 +1,88 @@
-name: Java CI with Maven
+name: Test, Build and Publish Docker Image
 
 on:
   push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
+    branches:
+      - main
 
 jobs:
-  build:
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os: [windows-latest, ubuntu-latest]
-
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Set up JDK 14
-        uses: actions/setup-java@v3
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-          cache: maven
-
-      - name: Run tests with Maven
-        run: mvn test --file pom.xml
-
-      - name: Build with Maven
-        run: mvn package --file pom.xml
-
-  publish:
-    needs: build
+  test:
     runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
+      - name: Test
+        run: mvn -B test --file pom.xml
+
+  build-windows:
+    needs: test
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Build Docker image for Windows
+        uses: docker/build-push-action@v1
+        with:
+          context: .
+          push: false
+          tags: bitt3r/monopoly:windows-latest
+          platform: windows/amd64
+
+  build-ubuntu:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Build Docker image for Ubuntu
+        uses: docker/build-push-action@v1
+        with:
+          context: .
+          push: false
+          tags: bitt3r/monopoly:ubuntu-latest
+          platform: linux/amd64
+
+  push-windows:
+    needs: build-windows
+    runs-on: windows-latest
     steps:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v2
+      - name: Push Docker image for Windows
+        uses: docker/build-push-action@v1
         with:
           context: .
-          dockerfile: Dockerfile
           push: true
-          tags: |
-            bitt3r/monopoly:windows-latest
-            bitt3r/monopoly:ubuntu-latest
+          tags: bitt3r/monopoly:windows-latest
+          platform: windows/amd64
+          registry: docker.io
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+  push-ubuntu:
+    needs: build-ubuntu
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Push Docker image for Ubuntu
+        uses: docker/build-push-action@v1
+        with:
+          context: .
+          push: true
+          tags: bitt3r/monopoly:ubuntu-latest
+          platform: linux/amd64
           registry: docker.io
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
