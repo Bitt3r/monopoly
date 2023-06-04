@@ -3,8 +3,9 @@ COPY ./pom.xml ./pom.xml
 COPY ./src ./src
 RUN mvn -f /pom.xml clean package
 
-FROM openjdk:latest
+FROM openjdk:21-slim
 WORKDIR /monopoly
+RUN useradd monopoly && usermod -aG monopoly monopoly
 USER monopoly:monopoly
 COPY --from=build /target/*.jar 1.0-SNAPSHOT.jar
 
